@@ -25,9 +25,9 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.average);
+        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.average);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
-        this.sort(runsDAOS,censusComparator);
+        this.sort(runsDAOS,iplComparator);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
         return sortedRunsJson;
     }
@@ -37,9 +37,9 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.strikeRate);
+        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.strikeRate);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
-        this.sort(runsDAOS,censusComparator);
+        this.sort(runsDAOS,iplComparator);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
         return sortedRunsJson;
     }
@@ -49,9 +49,9 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.boundaries);
+        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.boundaries);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
-        this.sort(runsDAOS,censusComparator);
+        this.sort(runsDAOS,iplComparator);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
         return sortedRunsJson;
     }
@@ -60,12 +60,26 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.sixers);
+        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.sixers);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
-        this.sort(runsDAOS,censusComparator);
+        this.sort(runsDAOS,iplComparator);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
         return sortedRunsJson;
     }
+
+    public String getMaximumStrikeRateWithFoursAndSixWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorSR = Comparator.comparing(IPLDAO::getStrikeRate)
+                .thenComparing(iplDAO -> iplDAO.boundaries+iplDAO.sixers);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(runsDAOS,iplComparatorSR);
+        String sortedRunsJson = new Gson().toJson(runsDAOS);
+        return sortedRunsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {

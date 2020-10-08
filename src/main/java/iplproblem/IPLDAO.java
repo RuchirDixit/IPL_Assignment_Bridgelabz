@@ -7,6 +7,51 @@ public class IPLDAO {
     public int inningsPlayed;
     public int runs;
     public String highestScore;
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getMatchPlayed() {
+        return matchPlayed;
+    }
+
+    public int getInningsPlayed() {
+        return inningsPlayed;
+    }
+
+    public int getRuns() {
+        return runs;
+    }
+
+    public String getHighestScore() {
+        return highestScore;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public double getStrikeRate() {
+        return strikeRate;
+    }
+
+    public int getBoundaries() {
+        return boundaries;
+    }
+
+    public int getSixers() {
+        return sixers;
+    }
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public double getOvers() {
+        return overs;
+    }
+
     public double average;
     public double strikeRate;
     public int boundaries;
