@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-10-08T05:27:22" hostname="DESKTOP-VKMRUMV" time="80.931">
+  <properties/>
+  <testcase name="givenIPLRunsData_WhenSortedOnAverage_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="80.931">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[Exception IPL
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
