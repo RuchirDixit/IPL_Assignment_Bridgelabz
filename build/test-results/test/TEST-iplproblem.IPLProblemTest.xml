@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-08T15:23:37" hostname="DESKTOP-VKMRUMV" time="0.554">
+<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-10-08T18:04:03" hostname="DESKTOP-VKMRUMV" time="102.031">
   <properties/>
-  <testcase name="givenIPLWicketsData_WhenSortedDescendingOnBowlingEconomyRate_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="0.554"/>
+  <testcase name="givenIPLWicketsData_WhenSortedDescendingOnBowlingAvgWithStrikeRate_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="102.031">
+    <skipped/>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

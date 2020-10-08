@@ -133,4 +133,18 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    //UC10
+    @Test
+    public void givenIPLWicketsData_WhenSortedDescendingOnStrikeRateWith4W5W_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplWicketsData(MOST_WICKETS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumWicketsSRWith4w5wWiseSorting();
+            MostWicketsCSV[] mostWicketsCSV = new Gson().fromJson(sortedDataSR, MostWicketsCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", mostWicketsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
+
 }
