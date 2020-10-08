@@ -81,4 +81,17 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    //UC6
+    @Test
+    public void givenIPLRunsData_WhenSortedDescendingOnRunsAndAverages_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplRunsData(MOST_RUNS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumRunsWithAverageWiseSorting();
+            MostRunsCSV[] mostRunsAvgCSV = new Gson().fromJson(sortedDataSR, MostRunsCSV[].class);
+            Assert.assertEquals("Chris Gayle", mostRunsAvgCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }
