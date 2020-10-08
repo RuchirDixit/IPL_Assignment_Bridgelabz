@@ -80,6 +80,19 @@ public class IPLAnalyzer {
         return sortedRunsJson;
     }
 
+    public String getMaximumAverageWithStrikeRateWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getAverage)
+                .thenComparing(iplDAO -> iplDAO.strikeRate);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(runsDAOS,iplComparatorAvg);
+        String sortedRunsJson = new Gson().toJson(runsDAOS);
+        return sortedRunsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {

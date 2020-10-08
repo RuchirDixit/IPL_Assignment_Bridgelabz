@@ -61,11 +61,23 @@ public class IPLProblemTest {
     public void givenIPLRunsData_WhenSortedDescendingOnSRFourSix_ShouldReturnCorrectPlayerName() {
         try {
             IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
-            String player = null;
             iplAnalyzer.loadIplRunsData(MOST_RUNS_CSV_FILE_PATH);
             String sortedDataSR = iplAnalyzer.getMaximumStrikeRateWithFoursAndSixWiseSorting();
             MostRunsCSV[] mostRunsSRCSV = new Gson().fromJson(sortedDataSR, MostRunsCSV[].class);
             Assert.assertEquals("Andre Russell", mostRunsSRCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
+
+    //UC5
+    @Test
+    public void givenIPLRunsData_WhenSortedDescendingOnAverageAndStrikeRate_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplRunsData(MOST_RUNS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumAverageWithStrikeRateWiseSorting();
+            MostRunsCSV[] mostRunsAvgCSV = new Gson().fromJson(sortedDataSR, MostRunsCSV[].class);
+            Assert.assertEquals("MS Dhoni", mostRunsAvgCSV[0].playerName);
         } catch(IPLException e) {
         }
     }
