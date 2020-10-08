@@ -159,4 +159,17 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    //UC12
+    @Test
+    public void givenIPLWicketsData_WhenSortedDescendingOnMaxWicketsWithAverage_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplWicketsData(MOST_WICKETS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumWicketWithAverageWiseSorting();
+            MostWicketsCSV[] mostWicketsCSV = new Gson().fromJson(sortedDataSR, MostWicketsCSV[].class);
+            Assert.assertEquals("Imran Tahir", mostWicketsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }

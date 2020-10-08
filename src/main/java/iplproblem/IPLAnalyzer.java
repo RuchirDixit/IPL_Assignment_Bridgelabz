@@ -174,6 +174,19 @@ public class IPLAnalyzer {
         return sortedWicketsJson;
     }
 
+    public String getMaximumWicketWithAverageWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getWickets)
+                .thenComparing(iplDAO -> iplDAO.average);
+        List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(wicketsDAOS,iplComparatorAvg);
+        String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
+        return sortedWicketsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {
