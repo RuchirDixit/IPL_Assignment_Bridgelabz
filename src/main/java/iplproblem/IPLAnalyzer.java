@@ -43,6 +43,29 @@ public class IPLAnalyzer {
         String sortedRunsJson = new Gson().toJson(runsDAOS);
         return sortedRunsJson;
     }
+
+    public String getMaximumBoundariesWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.boundaries);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(runsDAOS,censusComparator);
+        String sortedRunsJson = new Gson().toJson(runsDAOS);
+        return sortedRunsJson;
+    }
+    public String getMaximumSixesWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> censusComparator = Comparator.comparing(runs -> runs.sixers);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(runsDAOS,censusComparator);
+        String sortedRunsJson = new Gson().toJson(runsDAOS);
+        return sortedRunsJson;
+    }
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {

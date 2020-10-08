@@ -31,4 +31,28 @@ public class IPLProblemTest {
             Assert.assertEquals("Andre Russell", mostRunsCSV[0].playerName);
         } catch(IPLException e) {}
     }
+
+    //UC3
+    @Test
+    public void givenIPLRunsData_WhenSortedDescendingOnMaximumSixes_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplRunsData(MOST_RUNS_CSV_FILE_PATH);
+            String sortedData = iplAnalyzer.getMaximumSixesWiseSorting();
+            MostRunsCSV[] mostRunsCSV = new Gson().fromJson(sortedData, MostRunsCSV[].class);
+            Assert.assertEquals("Andre Russell", mostRunsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
+    @Test
+    public void givenIPLRunsData_WhenSortedDescendingOnMaximumFours_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplRunsData(MOST_RUNS_CSV_FILE_PATH);
+            String sortedData = iplAnalyzer.getMaximumBoundariesWiseSorting();
+            MostRunsCSV[] mostRunsCSV = new Gson().fromJson(sortedData, MostRunsCSV[].class);
+            Assert.assertEquals("Shikhar Dhawan", mostRunsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }
