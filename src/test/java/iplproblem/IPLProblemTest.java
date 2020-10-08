@@ -120,4 +120,17 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    // UC9
+    @Test
+    public void givenIPLWicketsData_WhenSortedDescendingOnBowlingEconomyRate_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplWicketsData(MOST_WICKETS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumWicketsWithEconomyRateWiseSorting();
+            MostWicketsCSV[] mostWicketsCSV = new Gson().fromJson(sortedDataSR, MostWicketsCSV[].class);
+            Assert.assertEquals("Tim Southee", mostWicketsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }

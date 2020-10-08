@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-08T15:17:18" hostname="DESKTOP-VKMRUMV" time="2.45">
+<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-08T15:23:37" hostname="DESKTOP-VKMRUMV" time="0.554">
   <properties/>
-  <testcase name="givenIPLWicketsData_WhenSortedDescendingOnBowlingStrikeRate_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="2.45"/>
-  <system-out><![CDATA[Krishnappa Gowtham
-]]></system-out>
+  <testcase name="givenIPLWicketsData_WhenSortedDescendingOnBowlingEconomyRate_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="0.554"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

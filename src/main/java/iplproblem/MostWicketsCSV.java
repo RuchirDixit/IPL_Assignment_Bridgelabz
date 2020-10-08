@@ -22,6 +22,9 @@ public class MostWicketsCSV {
     @CsvBindByName(column = "SR",required = true)
     public double strikeRate;
 
+    @CsvBindByName(column = "Econ",required = true)
+    public double economyRate;
+
 
     @Override
     public String toString() {
@@ -33,6 +36,7 @@ public class MostWicketsCSV {
                 ", Overs='" + overs + '\'' +
                 ", Average='" + average + '\'' +
                 ", SR='" + strikeRate + '\'' +
+                ", Econ ='" + economyRate + '\'' +
                 '}';
     }
 }

@@ -136,6 +136,18 @@ public class IPLAnalyzer {
         return sortedWicketsJson;
     }
 
+    public String getMaximumWicketsWithEconomyRateWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(wickets -> wickets.economyRate);
+        List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(wicketsDAOS,iplComparatorAvg);
+        String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
+        return sortedWicketsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {

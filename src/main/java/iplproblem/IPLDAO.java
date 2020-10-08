@@ -8,6 +8,7 @@ public class IPLDAO {
     public int runs;
     public String highestScore;
     public double average;
+    public double economyRate;
     public double strikeRate;
     public int boundaries;
     public int sixers;
@@ -34,6 +35,7 @@ public class IPLDAO {
         this.overs = mostWicketsCSV.overs;
         this.average = mostWicketsCSV.average;
         this.strikeRate = mostWicketsCSV.strikeRate;
+        this.economyRate = mostWicketsCSV.economyRate;
     }
     public String getPlayerName() {
         return playerName;
