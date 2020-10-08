@@ -120,8 +120,20 @@ public class IPLAnalyzer {
         Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(wickets -> wickets.average);
         List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(wicketsDAOS,iplComparatorAvg);
-        String sortedRunsJson = new Gson().toJson(wicketsDAOS);
-        return sortedRunsJson;
+        String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
+        return sortedWicketsJson;
+    }
+
+    public String getMaximumWicketsWithStrikeRateWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(wickets -> wickets.strikeRate);
+        List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(wicketsDAOS,iplComparatorAvg);
+        String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
+        return sortedWicketsJson;
     }
 
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {

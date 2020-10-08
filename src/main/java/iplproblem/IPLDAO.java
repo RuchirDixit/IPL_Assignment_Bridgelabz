@@ -33,6 +33,7 @@ public class IPLDAO {
         this.wickets = mostWicketsCSV.wickets;
         this.overs = mostWicketsCSV.overs;
         this.average = mostWicketsCSV.average;
+        this.strikeRate = mostWicketsCSV.strikeRate;
     }
     public String getPlayerName() {
         return playerName;
