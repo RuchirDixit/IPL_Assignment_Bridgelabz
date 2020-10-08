@@ -16,6 +16,9 @@ public class MostWicketsCSV {
     @CsvBindByName(column = "OV",required = true)
     public double overs;
 
+    @CsvBindByName(column = "Avg",required = true)
+    public double average;
+
     @Override
     public String toString() {
         return "MostRunsCSV{" +
@@ -24,6 +27,7 @@ public class MostWicketsCSV {
                 ", Innings Played='" + inningsPlayed + '\'' +
                 ", Wickets='" + wickets + '\'' +
                 ", Overs='" + overs + '\'' +
+                ", Average='" + average + '\'' +
                 '}';
     }
 }
