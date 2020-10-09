@@ -211,4 +211,17 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    //UC16
+    @Test
+    public void givenIPLWicketsData_WhenSortedAscendingHundredFiftyAndAverage_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplData(MOST_RUNS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumHundredFiftyAverageSorting();
+            MostRunsCSV[] mostRunsCSV = new Gson().fromJson(sortedDataSR, MostRunsCSV[].class);
+            Assert.assertEquals("David Warner ",mostRunsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }

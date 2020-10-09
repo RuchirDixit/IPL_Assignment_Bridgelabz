@@ -18,6 +18,7 @@ public class IPLDAO {
     public int fourW;
     public int fiveW;
     public int hundreds;
+    public int fifty;
 
     public IPLDAO(MostRunsCSV mostRunsCSV){
         this.playerName = mostRunsCSV.playerName;
@@ -30,6 +31,7 @@ public class IPLDAO {
         this.boundaries = mostRunsCSV.boundaries;
         this.sixers = mostRunsCSV.sixers;
         this.hundreds = mostRunsCSV.hundreds;
+        this.fifty = mostRunsCSV.fifty;
     }
 
     public IPLDAO(MostWicketsCSV mostWicketsCSV){
@@ -49,6 +51,10 @@ public class IPLDAO {
     }
 
     public int getHundreds() {
+        return hundreds;
+    }
+
+    public int getFifty() {
         return hundreds;
     }
 

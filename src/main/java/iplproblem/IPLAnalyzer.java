@@ -236,6 +236,21 @@ public class IPLAnalyzer {
         return sortedWicketsJson;
     }
 
+    public String getMaximumHundredFiftyAverageSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getFifty)
+                .thenComparing(IPLDAO::getHundreds);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.ascendingSort(runsDAOS,iplComparatorAvg);
+        Comparator<IPLDAO> iplComparatorAvg1 = iplComparatorAvg.thenComparing(runsData -> runsData.battingAverage);
+        this.sort(runsDAOS,iplComparatorAvg1);
+        String sortedWicketsJson = new Gson().toJson(runsDAOS);
+        return sortedWicketsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {
@@ -244,6 +259,21 @@ public class IPLAnalyzer {
                 IPLDAO ipl1=iplDAOS.get(j);
                 IPLDAO ipl2=iplDAOS.get(j+1);
                 if(iplComparator.compare(ipl1,ipl2) < 0)
+                {
+                    iplDAOS.set(j,ipl2);
+                    iplDAOS.set(j+1,ipl1);
+                }
+            }
+        }
+    }
+    private void ascendingSort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
+        for (int i=0 ; i < iplDAOS.size()-1; i++)
+        {
+            for (int j=0 ; j < iplDAOS.size()-i-1; j++)
+            {
+                IPLDAO ipl1=iplDAOS.get(j);
+                IPLDAO ipl2=iplDAOS.get(j+1);
+                if(iplComparator.compare(ipl1,ipl2) > 0)
                 {
                     iplDAOS.set(j,ipl2);
                     iplDAOS.set(j+1,ipl1);
