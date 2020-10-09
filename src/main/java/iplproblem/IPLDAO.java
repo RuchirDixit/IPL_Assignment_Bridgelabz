@@ -7,7 +7,8 @@ public class IPLDAO {
     public int inningsPlayed;
     public int runs;
     public String highestScore;
-    public double average;
+    public double battingAverage;
+    public double bowlingAverage;
     public double economyRate;
     public double strikeRate;
     public int boundaries;
@@ -23,7 +24,7 @@ public class IPLDAO {
         this.inningsPlayed = mostRunsCSV.inningsPlayed;
         this.runs = mostRunsCSV.runs;
         this.highestScore = mostRunsCSV.highestScore;
-        this.average = mostRunsCSV.average;
+        this.battingAverage = mostRunsCSV.average;
         this.strikeRate = mostRunsCSV.strikeRate;
         this.boundaries = mostRunsCSV.boundaries;
         this.sixers = mostRunsCSV.sixers;
@@ -35,7 +36,7 @@ public class IPLDAO {
         this.inningsPlayed = mostWicketsCSV.inningsPlayed;
         this.wickets = mostWicketsCSV.wickets;
         this.overs = mostWicketsCSV.overs;
-        this.average = mostWicketsCSV.average;
+        this.bowlingAverage = mostWicketsCSV.average;
         this.strikeRate = mostWicketsCSV.strikeRate;
         this.economyRate = mostWicketsCSV.economyRate;
         this.fourW = mostWicketsCSV.fourW;
@@ -61,8 +62,12 @@ public class IPLDAO {
         return highestScore;
     }
 
-    public double getAverage() {
-        return average;
+    public double getBattingAverage() {
+        return battingAverage;
+    }
+
+    public double getBowlingAverage() {
+        return bowlingAverage;
     }
 
     public double getStrikeRate() {

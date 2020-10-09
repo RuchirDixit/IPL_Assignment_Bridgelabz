@@ -15,22 +15,32 @@ public class IPLAnalyzer {
     {
         iplMap = new HashMap<>();
     }
-    public int loadIplRunsData(String csvFilePath) throws IPLException {
-        iplMap = new IPLLoader().loadIPLData(MostRunsCSV.class,csvFilePath);
-        return iplMap.size();
+    public int loadIplData(String... csvFilePath) throws IPLException {
+        if(csvFilePath[0].equals("./src/test/resources/IPL2019FactsheetMostRuns.csv")) {
+            iplMap = new IPLLoader().loadIPLData(MostRunsCSV.class, csvFilePath);
+            return iplMap.size();
+        }
+        else if(csvFilePath[0].equals("./src/test/resources/IPL2019FactsheetMostWkts.csv"))  {
+            iplMap = new IPLLoader().loadIPLData(MostWicketsCSV.class,csvFilePath);
+            return iplMap.size();
+        }
+        else{
+            iplMap = new IPLLoader().loadIPLDataMultiple(csvFilePath[0],csvFilePath[1]);
+            return iplMap.size();
+        }
     }
 
-    public int loadIplWicketsData(String csvFilePath) throws IPLException {
-        iplMap = new IPLLoader().loadIPLData(MostWicketsCSV.class,csvFilePath);
-        return iplMap.size();
-    }
+//    public int loadIplWicketsData(String csvFilePath) throws IPLException {
+//        iplMap = new IPLLoader().loadIPLData(MostWicketsCSV.class,csvFilePath);
+//        return iplMap.size();
+//    }
 
     public String getAverageWiseSorting() throws IPLException {
         if( iplMap == null || iplMap.size() == 0 )
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.average);
+        Comparator<IPLDAO> iplComparator = Comparator.comparing(runs -> runs.battingAverage);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(runsDAOS,iplComparator);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
@@ -91,7 +101,7 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getAverage)
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getBattingAverage)
                 .thenComparing(iplDAO -> iplDAO.strikeRate);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(runsDAOS,iplComparatorAvg);
@@ -105,7 +115,7 @@ public class IPLAnalyzer {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
         Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getHighestScore)
-                .thenComparing(iplDAO -> iplDAO.average);
+                .thenComparing(iplDAO -> iplDAO.battingAverage);
         List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(runsDAOS,iplComparatorAvg);
         String sortedRunsJson = new Gson().toJson(runsDAOS);
@@ -117,7 +127,7 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(wickets -> wickets.average);
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(wickets -> wickets.bowlingAverage);
         List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(wicketsDAOS,iplComparatorAvg);
         String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
@@ -166,7 +176,7 @@ public class IPLAnalyzer {
         {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
-        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getAverage)
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getBowlingAverage)
                 .thenComparing(iplDAO -> iplDAO.strikeRate);
         List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(wicketsDAOS,iplComparatorAvg);
@@ -180,7 +190,20 @@ public class IPLAnalyzer {
             throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
         }
         Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getWickets)
-                .thenComparing(iplDAO -> iplDAO.average);
+                .thenComparing(iplDAO -> iplDAO.bowlingAverage);
+        List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(wicketsDAOS,iplComparatorAvg);
+        String sortedWicketsJson = new Gson().toJson(wicketsDAOS);
+        return sortedWicketsJson;
+    }
+
+    public String getMaximumBattingBowlingAverageWiseSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getBattingAverage)
+                .thenComparing(iplDAO -> iplDAO.bowlingAverage);
         List<IPLDAO> wicketsDAOS = iplMap.values().stream().collect(Collectors.toList());
         this.sort(wicketsDAOS,iplComparatorAvg);
         String sortedWicketsJson = new Gson().toJson(wicketsDAOS);

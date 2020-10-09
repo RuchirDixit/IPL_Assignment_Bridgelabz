@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -38,6 +39,20 @@ public class IPLLoader {
             }
         } catch (Exception e) {
 
+        }
+        return iplMap;
+    }
+
+    public <E> Map<String,IPLDAO> loadIPLDataMultiple(String... csvFilePath) {
+        Map<String,IPLDAO> runsMap = loadIPLData(MostRunsCSV.class,csvFilePath[0]);
+        Map<String,IPLDAO> wicketsMap = loadIPLData(MostWicketsCSV.class,csvFilePath[1]);
+        Map<String,IPLDAO> iplMap = new HashMap<>();
+        for(Map.Entry<String,IPLDAO> runs : runsMap.entrySet()){
+            for(Map.Entry<String,IPLDAO> wickets : wicketsMap.entrySet()){
+                if(runs.getValue().playerName.equals(wickets.getValue().playerName)){
+                    iplMap.put(wickets.getKey(),wickets.getValue());
+                }
+            }
         }
         return iplMap;
     }
