@@ -223,6 +223,19 @@ public class IPLAnalyzer {
         return sortedWicketsJson;
     }
 
+    public String getMaximumHundredSorting() throws IPLException {
+        if( iplMap == null || iplMap.size() == 0 )
+        {
+            throw new IPLException("No data",IPLException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> iplComparatorAvg = Comparator.comparing(IPLDAO::getHundreds)
+                .thenComparing(iplDAO -> iplDAO.battingAverage);
+        List<IPLDAO> runsDAOS = iplMap.values().stream().collect(Collectors.toList());
+        this.sort(runsDAOS,iplComparatorAvg);
+        String sortedWicketsJson = new Gson().toJson(runsDAOS);
+        return sortedWicketsJson;
+    }
+
     private void sort(List<IPLDAO> iplDAOS,Comparator<IPLDAO> iplComparator) {
         for (int i=0 ; i < iplDAOS.size()-1; i++)
         {

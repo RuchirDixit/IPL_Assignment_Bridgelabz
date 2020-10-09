@@ -29,6 +29,9 @@ public class MostRunsCSV {
     @CsvBindByName(column = "6s",required = true)
     public int sixers;
 
+    @CsvBindByName(column = "100",required = true)
+    public int hundreds;
+
     @Override
     public String toString() {
         return "MostRunsCSV{" +
@@ -41,6 +44,7 @@ public class MostRunsCSV {
                 ", SR='" + strikeRate + '\'' +
                 ", 4s='" + boundaries + '\'' +
                 ", 6s='" + sixers + '\'' +
+                ", 100='" + hundreds + '\'' +
                 '}';
     }
 }

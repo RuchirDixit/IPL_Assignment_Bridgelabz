@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-09T17:47:42" hostname="DESKTOP-VKMRUMV" time="3.403">
+<testsuite name="iplproblem.IPLProblemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-09T18:00:30" hostname="DESKTOP-VKMRUMV" time="1.116">
   <properties/>
-  <testcase name="givenIPLWicketsData_WhenSortedDescendingOnAllRounder_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="3.403"/>
+  <testcase name="givenIPLWicketsData_WhenSortedDescendingMaximum100_ShouldReturnCorrectPlayerName" classname="iplproblem.IPLProblemTest" time="1.116"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

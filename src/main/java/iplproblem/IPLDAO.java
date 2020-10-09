@@ -17,6 +17,7 @@ public class IPLDAO {
     public double overs;
     public int fourW;
     public int fiveW;
+    public int hundreds;
 
     public IPLDAO(MostRunsCSV mostRunsCSV){
         this.playerName = mostRunsCSV.playerName;
@@ -28,6 +29,7 @@ public class IPLDAO {
         this.strikeRate = mostRunsCSV.strikeRate;
         this.boundaries = mostRunsCSV.boundaries;
         this.sixers = mostRunsCSV.sixers;
+        this.hundreds = mostRunsCSV.hundreds;
     }
 
     public IPLDAO(MostWicketsCSV mostWicketsCSV){
@@ -44,6 +46,10 @@ public class IPLDAO {
     }
     public String getPlayerName() {
         return playerName;
+    }
+
+    public int getHundreds() {
+        return hundreds;
     }
 
     public int getMatchPlayed() {
