@@ -185,4 +185,17 @@ public class IPLProblemTest {
         } catch(IPLException e) {
         }
     }
+
+    //UC14
+    @Test
+    public void givenIPLWicketsData_WhenSortedDescendingOnAllRounder_ShouldReturnCorrectPlayerName() {
+        try {
+            IPLAnalyzer iplAnalyzer = new IPLAnalyzer();
+            iplAnalyzer.loadIplData(MOST_RUNS_CSV_FILE_PATH,MOST_WICKETS_CSV_FILE_PATH);
+            String sortedDataSR = iplAnalyzer.getMaximumBattingBowlingWiseSorting();
+            MostWicketsCSV[] mostWicketsCSV = new Gson().fromJson(sortedDataSR, MostWicketsCSV[].class);
+            Assert.assertEquals("Chris Gayle", mostWicketsCSV[0].playerName);
+        } catch(IPLException e) {
+        }
+    }
 }
